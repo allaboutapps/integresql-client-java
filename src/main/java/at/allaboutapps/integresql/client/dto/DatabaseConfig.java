@@ -31,7 +31,7 @@ public class DatabaseConfig {
 
     /**
      * Generates a standard PostgreSQL JDBC connection string.
-     * Example: jdbc:postgresql://host:port/database?param1=value1&param2=value2
+     * Example: jdbc:postgresql://host:port/database?param1=value1&amp;param2=value2
      *
      * @return The JDBC connection string.
      */
