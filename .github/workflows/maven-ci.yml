@@ -31,4 +31,4 @@ jobs:
             ${{ runner.os }}-maven-
 
       - name: Run Tests with Maven
-        run: mvn -B verify --file pom.xml
+        run: ./mvnw -B verify

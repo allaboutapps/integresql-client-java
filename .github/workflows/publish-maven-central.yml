@@ -28,6 +28,7 @@ jobs:
     - name: Publish to Maven Central
       run: |
         ./mvnw deploy -B \
+        -Prelease \
         -DskipTests
       env:
         # Maven Central credentials via https://central.sonatype.com/account
