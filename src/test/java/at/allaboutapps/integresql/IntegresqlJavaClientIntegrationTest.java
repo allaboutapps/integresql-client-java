@@ -234,7 +234,9 @@ class IntegresqlJavaClientIntegrationTest {
         // config1.host = postgresContainer.getHost(); // Use the host of the PostgreSQL
         // container
 
+        config1.host = "localhost";
         String url1 = config1.connectionString(); // Base URL
+        log.info("Connecting to DB1: {}", url1);
         try (Connection conn1 = DriverManager.getConnection(url1, config1.username, config1.password)) {
             assertThat(conn1.isValid(5)).as("DB1 connection should be valid").isTrue();
             log.info("Successfully pinged DB1: {}", db1.database.templateHash);

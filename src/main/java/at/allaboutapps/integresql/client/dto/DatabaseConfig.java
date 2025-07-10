@@ -37,7 +37,7 @@ public class DatabaseConfig {
      */
     public String connectionString() {
         StringBuilder jdbcUrl = new StringBuilder("jdbc:postgresql://");
-        jdbcUrl.append("localhost").append(":").append(port).append("/").append(database);
+        jdbcUrl.append(host).append(":").append(port).append("/").append(database);
 
         if (additionalParams != null && !additionalParams.isEmpty()) {
             jdbcUrl.append("?");

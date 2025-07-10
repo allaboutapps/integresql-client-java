@@ -7,7 +7,7 @@
   <groupId>at.allaboutapps.integresql</groupId>
   <artifactId>integresql-java-client</artifactId>
   <description>A Java client library for interacting with an IntegreSQL server.</description>
-  <version>1.0.0</version>
+  <version>1.0.1</version>
   <name>${project.groupId}:${project.artifactId}</name>
   <url>https://github.com/allaboutapps/integresql-client-java</url>
 
