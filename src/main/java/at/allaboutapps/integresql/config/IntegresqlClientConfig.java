@@ -10,13 +10,16 @@ public class IntegresqlClientConfig {
     private final String apiVersion;
     public final Boolean debug;
     public final Optional<Integer> portOverride;
+    public final Optional<String> hostOverride;
 
     // Private constructor for builder pattern or factory method
-    private IntegresqlClientConfig(String baseUrl, String apiVersion, Boolean debug, Optional<Integer> portOverride) {
+    private IntegresqlClientConfig(String baseUrl, String apiVersion, Boolean debug, Optional<Integer> portOverride,
+            Optional<String> hostOverride) {
         this.baseUrl = baseUrl;
         this.apiVersion = apiVersion;
         this.debug = debug != null ? debug : false;
         this.portOverride = portOverride != null ? portOverride : Optional.empty();
+        this.hostOverride = hostOverride != null ? hostOverride : Optional.empty();
     }
 
     // --- Getters ---
@@ -43,7 +46,7 @@ public class IntegresqlClientConfig {
         String envBaseUrl = EnvUtil.getEnv("INTEGRESQL_CLIENT_BASE_URL", "http://integresql:5000/api");
         String envApiVersion = EnvUtil.getEnv("INTEGRESQL_CLIENT_API_VERSION", "v1");
         Boolean envDebug = EnvUtil.getEnvAsBool("INTEGRESQL_CLIENT_DEBUG", false);
-        return new IntegresqlClientConfig(envBaseUrl, envApiVersion, envDebug, Optional.empty());
+        return new IntegresqlClientConfig(envBaseUrl, envApiVersion, envDebug, Optional.empty(), Optional.empty());
     }
 
     /**
@@ -55,7 +58,7 @@ public class IntegresqlClientConfig {
      * @return A new IntegresqlClientConfig instance.
      */
     public static IntegresqlClientConfig customConfig(String baseUrl, String apiVersion, Boolean debug,
-            Optional<Integer> portOverride) {
+            Optional<Integer> portOverride, Optional<String> hostOverride) {
         if (baseUrl == null || baseUrl.trim().isEmpty()) {
             throw new IllegalArgumentException("Base URL cannot be null or empty");
         }
@@ -65,6 +68,6 @@ public class IntegresqlClientConfig {
         if (debug == null) {
             debug = false; // Default to false if not provided
         }
-        return new IntegresqlClientConfig(baseUrl, apiVersion, debug, portOverride);
+        return new IntegresqlClientConfig(baseUrl, apiVersion, debug, portOverride, hostOverride);
     }
 }

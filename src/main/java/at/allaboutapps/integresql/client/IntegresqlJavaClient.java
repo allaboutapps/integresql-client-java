@@ -337,6 +337,10 @@ public class IntegresqlJavaClient implements AutoCloseable {
                     config.port = this.config.portOverride.get();
                 }
 
+                if (this.config.hostOverride.isPresent()) {
+                    config.host = this.config.hostOverride.get();
+                }
+
                 String connectionString = config.connectionString();
                 // Add user/password to connection string for JDBC
                 String user = Objects.requireNonNull(config.username, "Template username is null");
@@ -410,6 +414,10 @@ public class IntegresqlJavaClient implements AutoCloseable {
 
             if (this.config.portOverride.isPresent()) {
                 config.port = this.config.portOverride.get();
+            }
+
+            if (this.config.hostOverride.isPresent()) {
+                config.host = this.config.hostOverride.get();
             }
 
             String connectionString = config.connectionString(); // Base URL: jdbc:postgresql://host:port/database

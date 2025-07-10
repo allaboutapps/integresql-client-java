@@ -99,7 +99,8 @@ class IntegresqlJavaClientIntegrationTest {
         // Construct base URL for IntegreSQL API
         String baseUrl = String.format("http://%s:%d/api", host, mappedPortIntegreSQL);
 
-        IntegresqlClientConfig config = IntegresqlClientConfig.customConfig(baseUrl, "v1", false, Optional.empty());
+        IntegresqlClientConfig config = IntegresqlClientConfig.customConfig(baseUrl, "v1", false, Optional.empty(),
+                Optional.of(postgresContainer.getHost()));
         client = new IntegresqlJavaClient(config);
         log.info("PostgreSQL Test Container running at jdbc:postgresql://{}:{}/{} (internal alias: {})",
                 postgresContainer.getHost(), postgresContainer.getMappedPort(PostgreSQLContainer.POSTGRESQL_PORT),
@@ -234,7 +235,7 @@ class IntegresqlJavaClientIntegrationTest {
         // config1.host = postgresContainer.getHost(); // Use the host of the PostgreSQL
         // container
 
-        config1.host = "localhost";
+        // config1.host = "localhost";
         String url1 = config1.connectionString(); // Base URL
         log.info("Connecting to DB1: {}", url1);
         try (Connection conn1 = DriverManager.getConnection(url1, config1.username, config1.password)) {
